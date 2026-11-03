@@ -1,18 +1,52 @@
-from game import new_game, move
+
+from game import new_game, move, collect_item, light_lighthouse
+
 
 def main():
+    print("==============================")
+    print("  MYSTERY ISLAND")
+    print("  THE LOST LIGHTHOUSE")
+    print("==============================")
+
     name = input("What is your name? ").strip()
+
     player = new_game(name)
+
+    print(f"\nWelcome, {name}!")
+    print("Find the rope and lantern.")
+    print("Use them to reach and light the Lighthouse.")
+
     while not player["game_over"]:
-        print(f"\nLocation: {player['location']} | Energy: {player['energy']}")
-        choice = input("Command (go <direction>, quit): ").strip().lower()
+        print("\n------------------------------")
+        print(f"Location: {player['location']}")
+        print(f"Energy: {player['energy']}")
+        print(f"Inventory: {player['inventory']}")
+        print("------------------------------")
+
+        choice = input(
+            "Command (go <direction>, collect, light, quit): "
+        ).strip().lower()
+
         if choice == "quit":
+            print("Thanks for playing!")
             break
-        elif choice.startswith("go "):
-            ok, message = move(player, choice[3:])
+
+        elif choice == "collect":
+            ok, message = collect_item(player)
             print(message)
+
+        elif choice == "light":
+            ok, message = light_lighthouse(player)
+            print(message)
+
+        elif choice.startswith("go "):
+            direction = choice[3:].strip()
+            ok, message = move(player, direction)
+            print(message)
+
         else:
-            print("I don't understand that.")   # state unchanged
+            print("I don't understand that.")
+
 
 if __name__ == "__main__":
     main()
