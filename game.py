@@ -18,6 +18,7 @@ MAP = {
     }
 }
 
+
 def new_game(name):
     return {
         "name": name,
@@ -31,6 +32,7 @@ def new_game(name):
         "game_over": False,
         "won": False
     }
+
 
 def move(player, direction):
     if player["game_over"]:
@@ -57,6 +59,7 @@ def move(player, direction):
 
     return True, f"You walk to the {player['location']}."
 
+
 def collect_item(player):
     if player["game_over"]:
         return False, "The game is over."
@@ -70,6 +73,7 @@ def collect_item(player):
         return True, f"You collected a {item}!"
 
     return False, "There is nothing to collect here."
+
 
 def light_lighthouse(player):
     if player["game_over"]:
