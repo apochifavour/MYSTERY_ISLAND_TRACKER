@@ -1,8 +1,19 @@
+import game
 import unittest
 from game import new_game, move, collect_item, light_lighthouse
 from copy import deepcopy
 
 class TestGame(unittest.TestCase):
+
+    def test_blank_name_is_invalid(self):
+        self.assertFalse(game.is_valid_name(""))
+
+    def test_name_with_only_spaces_is_invalid(self):
+        self.assertFalse(game.is_valid_name("   "))
+
+    def test_normal_name_is_valid(self):
+        self.assertTrue(game.is_valid_name("Ada"))
+
 
     def test_new_game_defaults(self):
         p = new_game("Ada")
@@ -131,7 +142,6 @@ class TestGame(unittest.TestCase):
         self.assertEqual(new_player["inventory"], [])
         self.assertFalse(new_player["game_over"])
         self.assertFalse(new_player["won"])
-
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,4 +1,4 @@
-"""pet = input("Name your pet: ")
+pet = input("Name your pet: ")
 legs = 4
 is_hungry = True
 
@@ -19,7 +19,7 @@ x = 4
 print(y)
 
 "7" + "7"
-print("7" + "7")"""
+print("7" + "7")
 
 nickname = input("Enter your nickname: ")
 print(f"Welcome, {nickname}")

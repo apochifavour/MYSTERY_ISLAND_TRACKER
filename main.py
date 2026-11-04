@@ -1,3 +1,4 @@
+import game
 from game import new_game, move, collect_item, light_lighthouse
 
 
@@ -8,11 +9,15 @@ def main():
         print("  THE LOST LIGHTHOUSE")
         print("==============================")
 
-        name = input("What is your name? ").strip()
+        player_name = input("What is your name? ").strip()
 
-        player = new_game(name)
+        while not player_name:
+            print("Name cannot be empty. Please enter your name.")
+            player_name = input("What is your name? ").strip()
 
-        print(f"\nWelcome, {name}!")
+        player = new_game(player_name)
+
+        print(f"\nWelcome, {player_name}!")
         print("Find the rope and lantern.")
         print("Use them to reach and light the Lighthouse.")
 
@@ -46,6 +51,12 @@ def main():
 
             else:
                 print("I don't understand that.")
+                print("Invalid command!")
+                print("\nAvailable commands:")
+                print("- go <direction>")
+                print("- collect")
+                print("- light")
+                print("- quit")
 
         if choice == "quit":
             break

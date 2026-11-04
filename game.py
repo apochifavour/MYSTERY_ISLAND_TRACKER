@@ -89,3 +89,6 @@ def light_lighthouse(player):
     player["won"] = True
 
     return True, "Congratulations! You lit the Lighthouse and escaped Mystery Island!"
+
+def is_valid_name(name):
+    return bool(name.strip())
