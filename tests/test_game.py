@@ -143,5 +143,86 @@ class TestGame(unittest.TestCase):
         self.assertFalse(new_player["game_over"])
         self.assertFalse(new_player["won"])
 
+    def test_all_locations_have_descriptions(self):
+        from game import DESCRIPTIONS
+
+        expected_locations = [
+            "Beach",
+            "Jungle",
+            "Cave",
+            "Old Bridge",
+            "Lighthouse"
+    ]
+
+        for location in expected_locations:
+            self.assertIn(location, DESCRIPTIONS)
+
+    def test_descriptions_are_not_empty(self):
+        from game import DESCRIPTIONS
+
+        for description in DESCRIPTIONS.values():
+            self.assertIsInstance(description, str)
+            self.assertTrue(description.strip())        
+    def test_jungle_description_changes_after_collecting_rope(self):
+        from game import get_location_description
+
+        player = new_game("Fav")
+        player["location"] = "Jungle"
+
+        before_collection = get_location_description(player)
+
+        self.assertIn("collect a rope", before_collection)
+
+        collect_item(player)
+
+        after_collection = get_location_description(player)
+
+        self.assertIn("already collected the rope", after_collection)
+    def test_cave_description_changes_after_collecting_lantern(self):
+        from game import get_location_description
+
+        player = new_game("Fav")
+        player["location"] = "Cave"
+
+        before_collection = get_location_description(player)
+
+        self.assertIn("collect a lantern", before_collection)
+
+        collect_item(player)
+
+        after_collection = get_location_description(player)
+
+        self.assertIn("already collected the lantern", after_collection)
+    def test_bridge_description_changes_after_collecting_rope(self):
+        from game import get_location_description
+
+        player = new_game("Fav")
+        player["location"] = "Old Bridge"
+
+        before_collection = get_location_description(player)
+
+        self.assertIn("need a rope", before_collection)
+
+        player["inventory"].append("rope")
+
+        after_collection = get_location_description(player)
+
+        self.assertIn("ready to cross", after_collection)
+
+    def test_lighthouse_description_changes_with_lantern(self):
+        from game import get_location_description
+
+        player = new_game("Fav")
+        player["location"] = "Lighthouse"
+
+        before_collection = get_location_description(player)
+
+        self.assertIn("need a lantern", before_collection)
+
+        player["inventory"].append("lantern")
+
+        after_collection = get_location_description(player)
+
+        self.assertIn("ready to light", after_collection)
 if __name__ == "__main__":
     unittest.main()
