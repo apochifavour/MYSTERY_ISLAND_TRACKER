@@ -1,5 +1,5 @@
 import game
-from game import new_game, move, collect_item, light_lighthouse
+from game import new_game, move, collect_item, light_lighthouse, get_location_description
 
 
 def main():
@@ -27,7 +27,8 @@ def main():
             print(f"Energy: {player['energy']}")
             print(f"Inventory: {player['inventory']}")
             print("------------------------------")
-
+            print(get_location_description(player))
+            print("------------------------------")
             choice = input(
                 "Command (go <direction>, collect, light, quit): "
             ).strip().lower()
