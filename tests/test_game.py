@@ -1,6 +1,6 @@
 import game
 import unittest
-from game import new_game, move, collect_item, light_lighthouse
+from game import new_game, move, collect_item, light_lighthouse, parse_replay_answer
 from copy import deepcopy
 
 class TestGame(unittest.TestCase):
