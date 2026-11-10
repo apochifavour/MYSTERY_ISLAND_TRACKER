@@ -224,5 +224,15 @@ class TestGame(unittest.TestCase):
         after_collection = get_location_description(player)
 
         self.assertIn("ready to light", after_collection)
+    def test_replay_yes(self):
+        self.assertTrue(parse_replay_answer("yes"))
+
+    def test_replay_no(self):
+        self.assertFalse(parse_replay_answer("no"))
+
+    def test_replay_invalid(self):
+        self.assertIsNone(parse_replay_answer("yoso"))
+
+
 if __name__ == "__main__":
     unittest.main()

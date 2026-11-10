@@ -1,5 +1,5 @@
 import game
-from game import new_game, move, collect_item, light_lighthouse, get_location_description
+from game import new_game, move, collect_item, light_lighthouse, get_location_description, parse_replay_answer
 
 
 def main():
@@ -61,17 +61,19 @@ def main():
 
         if choice == "quit":
             break
+        while True:
+            answer = parse_replay_answer(
+                input("\nDo you want to play again? (yes/no): ")
+            )
+            if answer is not None:
+                break
+            print("Please type yes or no.")
 
-        replay = input(
-            "\nDo you want to play again? (yes/no): "
-        ).strip().lower()
-
-        if replay != "yes":
+        if not answer:
             print("\nThanks for playing Mystery Island!")
             break
 
         print("\nStarting a new game...\n")
-
 
 if __name__ == "__main__":
     main()

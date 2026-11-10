@@ -160,3 +160,12 @@ def light_lighthouse(player):
     player["won"] = True
 
     return True, "Congratulations! You lit the Lighthouse and won the game!"
+
+def parse_replay_answer(answer):
+    """Return True for yes, False for no, None if the answer is not understood."""
+    answer = answer.strip().lower()
+    if answer in ("yes", "y"):
+        return True
+    if answer in ("no", "n"):
+        return False
+    return None
