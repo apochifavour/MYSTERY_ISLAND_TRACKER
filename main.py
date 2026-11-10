@@ -1,5 +1,5 @@
 import game
-from game import new_game, move, collect_item, light_lighthouse, get_location_description, parse_replay_answer
+from game import new_game, move, collect_item, light_lighthouse, get_location_description, parse_replay_answer, available_exits
 
 
 def main():
@@ -29,6 +29,8 @@ def main():
             print("------------------------------")
             print(get_location_description(player))
             print("------------------------------")
+            exits = available_exits(player)
+            print("Exits: " + ", ".join(f"go {word}" for word in exits))
             choice = input(
                 "Command (go <direction>, collect, light, quit): "
             ).strip().lower()

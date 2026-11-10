@@ -1,6 +1,6 @@
 import game
 import unittest
-from game import new_game, move, collect_item, light_lighthouse, parse_replay_answer
+from game import new_game, move, collect_item, light_lighthouse, parse_replay_answer, available_exits
 from copy import deepcopy
 
 class TestGame(unittest.TestCase):
@@ -232,6 +232,15 @@ class TestGame(unittest.TestCase):
 
     def test_replay_invalid(self):
         self.assertIsNone(parse_replay_answer("yoso"))
+
+    def test_exits_from_beach(self):
+        player = new_game("Ada")
+        self.assertEqual(available_exits(player), ["jungle"])
+
+    def test_exits_from_jungle(self):
+        player = new_game("Ada")
+        player["location"] = "Jungle"
+        self.assertEqual(sorted(available_exits(player)), ["beach", "cave"])        
 
 
 if __name__ == "__main__":

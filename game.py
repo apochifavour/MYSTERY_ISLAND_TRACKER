@@ -169,3 +169,6 @@ def parse_replay_answer(answer):
     if answer in ("no", "n"):
         return False
     return None
+def available_exits(player):
+    """Return the exit words for the player's current location."""
+    return [place.lower() for place in MAP[player["location"]]]
